@@ -69,11 +69,11 @@ namespace EF_C_
                         Console.WriteLine("\t\t\t\t");
                         Console.Write("\t\t\t\tEnter PhoneNumber: ");
                         st.PhoneNumber = int.Parse(Console.ReadLine());
-                        var Classrooms = (from classrooms in dbcontext.students
+                        var Classrooms = from classrooms in dbcontext.students
                                          join teacher in dbcontext.teacher on
                                           st.TeacherID equals teacher.CodeGv
-                                         select teacher.ClassRoom).FirstOrDefault();
-                        st.Classroom = (Convert.ToString(Classrooms)).ToUpper();
+                                         select teacher.ClassRoom);
+                        st.Classroom = Convert.ToString(Classrooms);
 
                         dbcontext.students.Add(st);
                         dbcontext.SaveChanges();

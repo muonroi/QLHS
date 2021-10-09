@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/muonroi/.dotnet/store/|arch|/|tfm|",
+      "/home/muonroi/.nuget/packages"
+    ]
+  }
+}

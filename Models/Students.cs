@@ -26,6 +26,7 @@ namespace EF_C_
         public int PhoneNumber { get; set; }
         public string Lesson { get; set; }
         public double ListAverageScore { get; set; }
+        [Required]
         public int TeacherID { get; set; }
 
         [ForeignKey("TeacherID")]

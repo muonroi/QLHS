@@ -62,7 +62,8 @@ namespace EF_C_
                         Console.WriteLine("\t\t\t\t");
                         var Classrooms = (from classrooms in dbcontext.students
                                          join teacher in dbcontext.teacher on
-                                         st.TeacherID equals Convert.ToInt32(teacher.CodeGv)
+                                         st.TeacherID equals Convert.ToInt32(teacher.CodeGv) 
+                                         orderby st.TeacherID
                                          select teacher.ClassRoom).FirstOrDefault();
                         st.Classroom = Convert.ToString(Classrooms);
                         Console.Write("\t\t\t\tEnter score math: ");

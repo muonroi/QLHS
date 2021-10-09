@@ -3,4 +3,8 @@
 --select tc.[Name Class] from dbo.Teacher as tc join dbo.students as st 
 --on tc.ID = st.TeacherID
 --delete dbo.students 
-select * from dbo.Students
+--select * from dbo.Students
+-- select tc.[Name Class] from dbo.Teacher as tc 
+-- join dbo.Students as st 
+-- ON tc.ID = st.TeacherID 
+-- where st.TeacherID = 2

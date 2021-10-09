@@ -27,7 +27,7 @@ namespace EF_C_
         {
             using (var dbcontext = new School_DbContext())
             {
-                string temp;
+                string temp,temp2;
                 // Teacher Teacher = new() {ClassRoom = "CCQ2011C", NumberOfClass = 39};
                 // Teacher Teacher2 = new() {ClassRoom = "CCQ2011D", NumberOfClass = 40};
                 // dbcontext.teacher.Add(Teacher);
@@ -54,11 +54,17 @@ namespace EF_C_
                         st.Age = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("\t\t\t\t");
                         Console.Write("\t\t\t\tEnter student sex: ");
-                        st.Sex = Console.ReadLine();
+                        temp2 = Console.ReadLine();
+                        st.Sex = ToUpCharacter(temp2); 
                         Console.WriteLine("\t\t\t\t");
                         Console.Write("\t\t\t\tEnter teacher code: ");
                         st.TeacherID = int.Parse(Console.ReadLine());
                         Console.WriteLine("\t\t\t\t");
+                        var Classrooms = (from classrooms in dbcontext.students
+                                         join teacher in dbcontext.teacher on
+                                         st.TeacherID equals Convert.ToInt32(teacher.CodeGv)
+                                         select teacher.ClassRoom).FirstOrDefault();
+                        st.Classroom = Convert.ToString(Classrooms);
                         Console.Write("\t\t\t\tEnter score math: ");
                         st.ScoreMath = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("\t\t\t\t");
@@ -70,12 +76,6 @@ namespace EF_C_
                         Console.WriteLine("\t\t\t\t");
                         Console.Write("\t\t\t\tEnter PhoneNumber: ");
                         st.PhoneNumber = int.Parse(Console.ReadLine());
-                        var Classrooms = from classrooms in dbcontext.students
-                                         join teacher in dbcontext.teacher on
-                                          st.TeacherID equals teacher.CodeGv
-                                         select teacher.ClassRoom;
-                        st.Classroom = Convert.ToString(Classrooms);
-
                         dbcontext.students.Add(st);
                         dbcontext.SaveChanges();
                         Console.WriteLine($"Add {NumberOf} succeeded!");

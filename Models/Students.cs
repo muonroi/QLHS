@@ -18,8 +18,7 @@ namespace EF_C_
         public int Age { get; set; }
         [Required]
         public string Sex { get; set; }
-        [Required]
-        public string Classroom { get; set; }
+        public string? Classroom { get; set; }
         public double ScoreMath { get; set; }
         public double ScoreChemical { get; set; }
         public double ScorePhysics { get; set; }

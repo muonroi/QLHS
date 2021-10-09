@@ -3,4 +3,4 @@
 --select tc.[Name Class] from dbo.Teacher as tc join dbo.students as st 
 --on tc.ID = st.TeacherID
 --delete dbo.students 
-select * from dbo.students 
+select * from dbo.Students

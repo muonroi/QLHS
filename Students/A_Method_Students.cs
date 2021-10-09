@@ -60,10 +60,8 @@ namespace EF_C_
                         Console.Write("\t\t\t\tEnter teacher code: ");
                         st.TeacherID = int.Parse(Console.ReadLine());
                         Console.WriteLine("\t\t\t\t");
-                        var Classrooms = (from classrooms in dbcontext.students
-                                         join teacher in dbcontext.teacher on
-                                         st.TeacherID equals Convert.ToInt32(teacher.CodeGv) 
-                                         orderby st.TeacherID
+                        var Classrooms = (from teacher in dbcontext.teacher where
+                                         st.TeacherID == Convert.ToInt32(teacher.CodeGv) 
                                          select teacher.ClassRoom).FirstOrDefault();
                         st.Classroom = Convert.ToString(Classrooms);
                         Console.Write("\t\t\t\tEnter score math: ");

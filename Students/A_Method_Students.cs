@@ -26,7 +26,6 @@ namespace EF_C_
         }
         public void AddListStudents(int NumberOf)
         {
-            int s = 0;
             using (var dbcontext = new School_DbContext())
             {
                 Students st = new();
@@ -80,7 +79,7 @@ namespace EF_C_
                         Console.Write("\t\t\t\tEnter PhoneNumber: ");
                         st.PhoneNumber = int.Parse(Console.ReadLine());
                         double temp3 = (st.ScoreMath + st.ScoreChemical + st.ScorePhysics) / 3;
-                        st.ScoreAverage = Math.Round(temp3,2);
+                        st.ScoreAverage = Math.Round(temp3, 2);
                         dbcontext.students.Add(st);
                         dbcontext.SaveChanges();
                         string rawTeacher = $@"UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] + 1 where [ID] = {st.TeacherID}";

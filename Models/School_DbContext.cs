@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace EF_C_
 {
@@ -30,10 +32,13 @@ namespace EF_C_
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Students>(
                 (entity =>
-                    entity.HasIndex(index => index.StudentCode).IsUnique(true)
+                {
+                    entity.HasIndex(index => index.StudentCode).IsUnique(true);
+                    entity.Property(index => index.Classroom).IsRequired(false);
+                }
                 )
             );
-            modelBuilder.Entity<Teacher>(entity => entity.HasIndex(index => index.ClassRoom).IsUnique(true));
+            modelBuilder.Entity<Teacher>(entity => {entity.HasIndex(index => index.ClassRoom).IsUnique(true); });
         }
     }
 }

@@ -123,9 +123,10 @@ namespace EF_C_
                                 {
                                     case 1:
                                         Method students = new Method();
-                                        Console.WriteLine($"Enter number of students:");
+                                       Console.WriteLine($"Enter number of students:");
                                         NumberOf = Convert.ToInt32(Console.ReadLine());
                                         students.AddListStudents(NumberOf);
+                                        
                                         break;
                                     default:
                                         Console.WriteLine("\t\t\t\tInvalid your selection!");

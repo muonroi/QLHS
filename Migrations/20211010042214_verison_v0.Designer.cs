@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EF_C_.Migrations
 {
     [DbContext(typeof(School_DbContext))]
-    [Migration("20211009034358_v2")]
-    partial class v2
+    [Migration("20211010042214_verison_v0")]
+    partial class verison_v0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,22 +22,15 @@ namespace EF_C_.Migrations
 
             modelBuilder.Entity("EF_C_.Students", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("StudentCode")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Students Code");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("Classroom")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lesson")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("ListAverageScore")
-                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -62,14 +55,10 @@ namespace EF_C_.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StudentCode")
-                        .HasColumnType("int")
-                        .HasColumnName("Students Code");
-
                     b.Property<int>("TeacherID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("StudentCode");
 
                     b.HasIndex("StudentCode")
                         .IsUnique();

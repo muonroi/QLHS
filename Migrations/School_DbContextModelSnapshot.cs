@@ -20,22 +20,15 @@ namespace EF_C_.Migrations
 
             modelBuilder.Entity("EF_C_.Students", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("StudentCode")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Students Code");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("Classroom")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lesson")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("ListAverageScore")
-                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -60,14 +53,10 @@ namespace EF_C_.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StudentCode")
-                        .HasColumnType("int")
-                        .HasColumnName("Students Code");
-
                     b.Property<int>("TeacherID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("StudentCode");
 
                     b.HasIndex("StudentCode")
                         .IsUnique();

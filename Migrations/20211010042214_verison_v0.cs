@@ -2,7 +2,7 @@
 
 namespace EF_C_.Migrations
 {
-    public partial class v0 : Migration
+    public partial class verison_v0 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,25 +24,21 @@ namespace EF_C_.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StudentsCode = table.Column<int>(name: "Students Code", type: "int", nullable: false),
+                    StudentsCode = table.Column<string>(name: "Students Code", type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "ntext", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Sex = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Classroom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Classroom = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ScoreMath = table.Column<double>(type: "float", nullable: false),
                     ScoreChemical = table.Column<double>(type: "float", nullable: false),
                     ScorePhysics = table.Column<double>(type: "float", nullable: false),
                     ScoreAverage = table.Column<double>(type: "float", nullable: false),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false),
-                    Lesson = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ListAverageScore = table.Column<double>(type: "float", nullable: false),
                     TeacherID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.ID);
+                    table.PrimaryKey("PK_Students", x => x.StudentsCode);
                     table.ForeignKey(
                         name: "FK_Students_Teacher_TeacherID",
                         column: x => x.TeacherID,
@@ -54,7 +50,8 @@ namespace EF_C_.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Students_Students Code",
                 table: "Students",
-                column: "Students Code");
+                column: "Students Code",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_TeacherID",
@@ -64,7 +61,8 @@ namespace EF_C_.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Teacher_Name Class",
                 table: "Teacher",
-                column: "Name Class");
+                column: "Name Class",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

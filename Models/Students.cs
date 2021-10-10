@@ -7,16 +7,14 @@ namespace EF_C_
     public class Students
     {
         [Key]
-        public int ID { get; set; }
-        [Required]
         [Column("Students Code")]
-        public int StudentCode { get; set; }
+        public string StudentCode { get; set; }
         [Required]
         [Column(TypeName = "ntext")]
         public string Name { get; set; }
         [Required]
         public int Age { get; set; }
-        [Required]
+         [Required]
         public string Sex { get; set; }
         public string Classroom { get; set; }
         public double ScoreMath { get; set; }
@@ -24,8 +22,6 @@ namespace EF_C_
         public double ScorePhysics { get; set; }
         public double ScoreAverage { get; set; }
         public int PhoneNumber { get; set; }
-        public string Lesson { get; set; }
-        public double ListAverageScore { get; set; }
         [Required]
         public int TeacherID { get; set; }
 

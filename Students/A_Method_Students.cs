@@ -111,6 +111,7 @@ namespace EF_C_
         }
         public string SearchStudents(int ID)
         {
+        string name = "nguyen van a";
             return "";
         }
         public void ViewProfile(int ID)

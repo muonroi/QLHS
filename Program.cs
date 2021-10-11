@@ -57,12 +57,13 @@ namespace EF_C_
             // Task Drop = ExecuteDatabase.DropDatabase();
             // Task Create = ExecuteDatabase.CreateDatabase();
             // Task.WaitAll(Create);
-            int NumberOf,ID;
+            int NumberOf, ID;
             A_Method_Students students = new A_Method_Students();
             string author = "PHI LÊ";
             bool status = true;
             do
             {
+                Console.Clear();
                 Task sp = space();
                 Task.WaitAll(sp);
                 Console.WriteLine("\t\t\t\t                        Manager Application                 ");
@@ -103,7 +104,7 @@ namespace EF_C_
                             Console.WriteLine("\t\t\t\t-    4.Search students with code number                    -");
                             Console.WriteLine("\t\t\t\t-                                                          -");
                             Console.WriteLine("\t\t\t\t-    5.Export data to excel                                -");
-                            Console.WriteLine("\t\t\t\t-                                                          -");                            Console.WriteLine("\t\t\t\t-                                                          -");
+                            Console.WriteLine("\t\t\t\t-                                                          -"); Console.WriteLine("\t\t\t\t-                                                          -");
                             Console.WriteLine("\t\t\t\t-    6.Teacher manager                                     -");
                             Console.WriteLine("\t\t\t\t-                                                          -");
                             Console.WriteLine("\t\t\t\t-    0.Back                                                -");
@@ -121,22 +122,22 @@ namespace EF_C_
                                 switch (int.Parse(key_ST))
                                 {
                                     case 1:
-                                        
+
                                         Console.Clear();
                                         Task.WaitAll(sp);
-                                        Console.WriteLine($"\t\t\t\t\tEnter number of students:");
+                                        Console.Write($"\t\t\t\t\tEnter number of students:");
                                         NumberOf = Convert.ToInt32(Console.ReadLine());
                                         students.AddListStudents(NumberOf);
+                                        Console.ReadKey();
                                         break;
-                                    default:
-                                        Console.WriteLine("\t\t\t\tInvalid your selection!");
-                                        break;
+
                                     case 2:
                                         Console.Clear();
                                         Task.WaitAll(sp);
                                         Console.Write("\t\t\t\tEnter number code students: ");
                                         ID = int.Parse(Console.ReadLine());
                                         students.EditProfileStudents(ID);
+                                        Console.ReadKey();
                                         break;
                                     case 3:
                                         Console.Clear();
@@ -144,6 +145,18 @@ namespace EF_C_
                                         Console.Write("\t\t\t\tEnter number code students: ");
                                         ID = int.Parse(Console.ReadLine());
                                         students.DeleteStudents(ID);
+                                        Console.ReadKey();
+                                        break;
+                                    case 4:
+                                        Console.Clear();
+                                        Task.WaitAll(sp);
+                                        Console.Write("\t\t\t\tEnter number code students: ");
+                                        ID = int.Parse(Console.ReadLine());
+                                        students.SearchStudents(ID);
+                                        Console.ReadKey();
+                                        break;
+                                    default:
+                                        Console.WriteLine("\t\t\t\tInvalid your selection!");
                                         break;
                                 }
                             }

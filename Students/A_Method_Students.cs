@@ -26,6 +26,7 @@ namespace EF_C_
         }
         public void AddListStudents(int NumberOf)
         {
+            Console.Clear();
             using (var dbcontext = new School_DbContext())
             {
                 Students st = new();
@@ -100,7 +101,7 @@ namespace EF_C_
         }
         public void EditProfileStudents(int ID)
         {
-            
+            Console.Clear();
             using (var dbcontext = new School_DbContext())
             {
                 Students st = new();
@@ -118,7 +119,7 @@ namespace EF_C_
                                 PhoneNumber = _temp.PhoneNumber,
                                 TeacherID = _temp.TeacherID,
                             };
-               
+
                 Console.Clear();
                 try
                 {
@@ -159,8 +160,7 @@ namespace EF_C_
                     Console.WriteLine("\t\t\t\t");
                     Console.Write("\t\t\t\tEnter PhoneNumber: ");
                     st.PhoneNumber = int.Parse(Console.ReadLine());
-                    double temp3 = (st.ScoreMath + st.ScoreChemical + st.ScorePhysics) / 3;
-                    st.ScoreAverage = Math.Round(temp3, 2);
+                  
                     foreach (var item in temp_)
                     {
                         //set value deafault if input 0 number
@@ -174,12 +174,11 @@ namespace EF_C_
                             st.TeacherID = item.TeacherID;
                         else if (st.TeacherID != 0 && st.TeacherID != item.TeacherID)
                         {
-                                string Teacher_ = $@"UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] - 1 where [ID] = {item.TeacherID}";
-                                var command = dbcontext.teacher.FromSqlRaw(Teacher_);
-                                dbcontext.Database.ExecuteSqlRaw(Teacher_);
-                               
+                            string Teacher_ = $@"UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] - 1 where [ID] = {item.TeacherID}";
+                            var command = dbcontext.teacher.FromSqlRaw(Teacher_);
+                            dbcontext.Database.ExecuteSqlRaw(Teacher_);
+
                         }
-                        
                         if (st.ScoreMath == 0)
                             st.ScoreMath = item.Math;
                         if (st.ScoreChemical == 0)
@@ -189,17 +188,19 @@ namespace EF_C_
                         if (st.PhoneNumber == 0)
                             st.PhoneNumber = item.PhoneNumber;
                     }
-                        dbcontext.students.Update(st);
-                        dbcontext.SaveChanges();
-                        string rawTeacher = $@"UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] + 1 where [ID] = {st.TeacherID}";
-                        var cmd = dbcontext.teacher.FromSqlRaw(rawTeacher);
-                        dbcontext.Database.ExecuteSqlRaw(rawTeacher);
-                        Console.Clear();
-                        for (int k = 0; k < 5; k++)
-                        {
-                            Console.WriteLine("");
-                        }
-                        Console.WriteLine($"\t\t\t\t\tEdit profile student success!");
+                    double temp3 = (st.ScoreMath + st.ScoreChemical + st.ScorePhysics) / 3;
+                    st.ScoreAverage = Math.Round(temp3, 2);
+                    dbcontext.students.Update(st);
+                    dbcontext.SaveChanges();
+                    string rawTeacher = $@"UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] + 1 where [ID] = {st.TeacherID}";
+                    var cmd = dbcontext.teacher.FromSqlRaw(rawTeacher);
+                    dbcontext.Database.ExecuteSqlRaw(rawTeacher);
+                    Console.Clear();
+                    for (int k = 0; k < 5; k++)
+                    {
+                        Console.WriteLine("");
+                    }
+                    Console.WriteLine($"\t\t\t\t\tEdit profile student success!");
                 }
                 catch (Exception er)
                 {
@@ -216,30 +217,62 @@ namespace EF_C_
         }
         public void DeleteStudents(int ID)
         {
+            Console.Clear();
             using (var dbcontext = new School_DbContext())
             {
-                var idst = ((from sto in dbcontext.students 
-                           where  sto.StudentCode == Convert.ToString(ID)
-                           select sto.StudentCode).ToList()).FirstOrDefault();  
-                var idteacher = ((from sto in dbcontext.students 
-                           where  sto.StudentCode == Convert.ToString(ID)
-                           select sto.TeacherID).ToList()).FirstOrDefault();  
-                var studentsid = new Students() {StudentCode = idst}; 
+                var idst = ((from sto in dbcontext.students
+                             where sto.StudentCode == Convert.ToString(ID)
+                             select sto.StudentCode).ToList()).FirstOrDefault();
+                var idteacher = ((from sto in dbcontext.students
+                                  where sto.StudentCode == Convert.ToString(ID)
+                                  select sto.TeacherID).ToList()).FirstOrDefault();
+                var studentsid = new Students() { StudentCode = idst };
                 dbcontext.Entry(studentsid).State = EntityState.Deleted;
                 dbcontext.SaveChanges();
                 Console.WriteLine($"Deleted success!");
-               string Teacher_ = $@"UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] - 1 where [ID] = {idteacher}";
-                                var command = dbcontext.teacher.FromSqlRaw(Teacher_);
-                                dbcontext.Database.ExecuteSqlRaw(Teacher_);
+                string Teacher_ = $@"UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] - 1 where [ID] = {idteacher}";
+                var command = dbcontext.teacher.FromSqlRaw(Teacher_);
+                dbcontext.Database.ExecuteSqlRaw(Teacher_);
             }
         }
-        public string SearchStudents(int ID)
+        public void SearchStudents(int ID)
         {
+            Console.Clear();
             using (var dbcontext = new School_DbContext())
             {
-                
+                var temp_ = from _temp in dbcontext.students
+                            where _temp.StudentCode == Convert.ToString(ID)
+                            select new
+                            {
+                                Name = _temp.Name,
+                                Age = _temp.Age,
+                                Sex = _temp.Sex,
+                                ClassRoom = _temp.Classroom,
+                                Math = _temp.ScoreMath,
+                                Chemical = _temp.ScoreChemical,
+                                Physics = _temp.ScorePhysics,
+                                Average = _temp.ScoreAverage,
+                                PhoneNumber = _temp.PhoneNumber,
+                                TeacherID = _temp.TeacherID,
+                            };
+                temp_.ToList().ForEach(x =>
+                                        Console.WriteLine($@"
+                                             FullName   : {x.Name}
+                                             Age        : {x.Age}
+                                             Sex        : {x.Sex}
+                                             ClassRoom  : {x.ClassRoom}
+                                             Math       : {x.Math}
+                                             Chemical   : {x.Chemical}
+                                             Physics    : {x.Physics}
+                                             Average    : {x.Average}
+                                             PhoneNumber: {x.PhoneNumber}
+                                             TeacherID  : {x.TeacherID}
+                                             "                                    
+                                            )
+                    );
+
+
             }
-            return "";
         }
         public void ExportExcel()
         {

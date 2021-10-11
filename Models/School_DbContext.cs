@@ -15,6 +15,7 @@ namespace EF_C_
         );
         public DbSet<Students> students { get; set; }
         public DbSet<Teacher> teacher { get; set; }
+        public DbSet<Account> accounts { get; set; }
         string dbo = @"
             ADDR = localhost,1433;
             Database = Schools;
@@ -39,6 +40,14 @@ namespace EF_C_
                     entity.Property(index => index.Classroom).IsRequired(false);
                 }
                 )
+            );
+            modelBuilder.Entity<Account>(
+                ( entity =>
+                {
+                    entity.Property(index => index.Password).IsRequired();
+                }
+                )
+
             );
             modelBuilder.Entity<Teacher>(entity => {entity.HasIndex(index => index.ClassRoom).IsUnique(true); });
         }

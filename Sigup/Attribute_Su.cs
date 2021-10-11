@@ -1,7 +1,11 @@
 namespace EF_C_
 {
-    public class Attribute_Su
+    interface Attribute_Su
     {
-        
+       public int CheckUser(string UserName);
+
+       public int CheckPassword(string Password);
+       
+       public string PasswordConverter(string Password);
     }
 }

@@ -13,7 +13,8 @@
 -- where st.TeacherID = 2
 --    select Count(*) as cou from dbo.Students as student INNER JOIN dbo.Teacher as tc ON student.TeacherID = tc.ID group by tc.[Name Class]
           --UPDATE dbo.Teacher SET [Number of Class] =1    
-         -- select * from Teacher                   
+   
+   --UPDATE dbo.Teacher SET [Number of Class] = 0      -- select * from Teacher                   
 -- UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] - 1 where [ID] = 1
---select * from Teacher     
---select * from Students 
+select * from Teacher     
+select * from Students 

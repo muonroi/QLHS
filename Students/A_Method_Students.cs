@@ -216,15 +216,30 @@ namespace EF_C_
         }
         public void DeleteStudents(int ID)
         {
-
+            using (var dbcontext = new School_DbContext())
+            {
+                var idst = ((from sto in dbcontext.students 
+                           where  sto.StudentCode == Convert.ToString(ID)
+                           select sto.StudentCode).ToList()).FirstOrDefault();  
+                var idteacher = ((from sto in dbcontext.students 
+                           where  sto.StudentCode == Convert.ToString(ID)
+                           select sto.TeacherID).ToList()).FirstOrDefault();  
+                var studentsid = new Students() {StudentCode = idst}; 
+                dbcontext.Entry(studentsid).State = EntityState.Deleted;
+                dbcontext.SaveChanges();
+                Console.WriteLine($"Deleted success!");
+               string Teacher_ = $@"UPDATE dbo.Teacher SET [Number of Class] = [Number of Class] - 1 where [ID] = {idteacher}";
+                                var command = dbcontext.teacher.FromSqlRaw(Teacher_);
+                                dbcontext.Database.ExecuteSqlRaw(Teacher_);
+            }
         }
         public string SearchStudents(int ID)
         {
+            using (var dbcontext = new School_DbContext())
+            {
+                
+            }
             return "";
-        }
-        public void ViewProfile(int ID)
-        {
-
         }
         public void ExportExcel()
         {

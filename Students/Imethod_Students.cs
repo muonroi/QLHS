@@ -7,7 +7,6 @@ namespace EF_C_
         public void EditProfileStudents(int ID);
         public void DeleteStudents(int ID);
         public string SearchStudents(int ID);
-        public void ViewProfile(int ID);
         public void ExportExcel();    
 
     }

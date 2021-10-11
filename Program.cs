@@ -103,10 +103,8 @@ namespace EF_C_
                             Console.WriteLine("\t\t\t\t-    4.Search students with code number                    -");
                             Console.WriteLine("\t\t\t\t-                                                          -");
                             Console.WriteLine("\t\t\t\t-    5.Export data to excel                                -");
-                            Console.WriteLine("\t\t\t\t-                                                          -");
-                            Console.WriteLine("\t\t\t\t-    6.View lists students                                 -");
-                            Console.WriteLine("\t\t\t\t-                                                          -");
-                            Console.WriteLine("\t\t\t\t-    7.Teacher manager                                     -");
+                            Console.WriteLine("\t\t\t\t-                                                          -");                            Console.WriteLine("\t\t\t\t-                                                          -");
+                            Console.WriteLine("\t\t\t\t-    6.Teacher manager                                     -");
                             Console.WriteLine("\t\t\t\t-                                                          -");
                             Console.WriteLine("\t\t\t\t-    0.Back                                                -");
                             Console.WriteLine("\t\t\t\t-                                                          -");
@@ -139,6 +137,13 @@ namespace EF_C_
                                         Console.Write("\t\t\t\tEnter number code students: ");
                                         ID = int.Parse(Console.ReadLine());
                                         students.EditProfileStudents(ID);
+                                        break;
+                                    case 3:
+                                        Console.Clear();
+                                        Task.WaitAll(sp);
+                                        Console.Write("\t\t\t\tEnter number code students: ");
+                                        ID = int.Parse(Console.ReadLine());
+                                        students.DeleteStudents(ID);
                                         break;
                                 }
                             }

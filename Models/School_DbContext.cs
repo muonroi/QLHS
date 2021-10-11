@@ -20,6 +20,8 @@ namespace EF_C_
             Database = Schools;
             UID = sa;
             PWD = Password123;
+            MultipleActiveResultSets=true;
+            App=EntityFramework;
         ";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

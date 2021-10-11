@@ -8,7 +8,7 @@ namespace EF_C_
 {
     class Program
     {
-       
+
         delegate void textcolor(string text);
         public static void colortext(string text)
         {
@@ -57,7 +57,8 @@ namespace EF_C_
             // Task Drop = ExecuteDatabase.DropDatabase();
             // Task Create = ExecuteDatabase.CreateDatabase();
             // Task.WaitAll(Create);
-            int NumberOf;
+            int NumberOf,ID;
+            A_Method_Students students = new A_Method_Students();
             string author = "PHI LÊ";
             bool status = true;
             do
@@ -122,14 +123,22 @@ namespace EF_C_
                                 switch (int.Parse(key_ST))
                                 {
                                     case 1:
-                                        Method students = new Method();
-                                       Console.WriteLine($"Enter number of students:");
+                                        
+                                        Console.Clear();
+                                        Task.WaitAll(sp);
+                                        Console.WriteLine($"\t\t\t\t\tEnter number of students:");
                                         NumberOf = Convert.ToInt32(Console.ReadLine());
                                         students.AddListStudents(NumberOf);
-                                        
                                         break;
                                     default:
                                         Console.WriteLine("\t\t\t\tInvalid your selection!");
+                                        break;
+                                    case 2:
+                                        Console.Clear();
+                                        Task.WaitAll(sp);
+                                        Console.Write("\t\t\t\tEnter number code students: ");
+                                        ID = int.Parse(Console.ReadLine());
+                                        students.EditProfileStudents(ID);
                                         break;
                                 }
                             }
@@ -166,7 +175,7 @@ namespace EF_C_
 
                 }
             } while (status);
-           
+
         }
     }
 }

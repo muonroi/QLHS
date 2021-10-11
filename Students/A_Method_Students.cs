@@ -3,9 +3,14 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 namespace EF_C_
 {
+    //bookmart SigUp and SigIn
     public class A_Method_Students : Imethod_Students
     {
-        public string ToUpCharacter(string name)
+        private string CheckID(string ID)
+        {
+            return ID;
+        }
+        private string ToUpCharacter(string name)
         {
             char[] names = name.ToCharArray();
             if (names.Length == 1)
@@ -276,7 +281,7 @@ namespace EF_C_
         }
         public void ExportExcel()
         {
-
+               
         }
     }
 }

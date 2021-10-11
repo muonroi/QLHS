@@ -10,30 +10,14 @@ namespace EF_C_
     {
 
         delegate void textcolor(string text);
-        public static void colortext(string text)
+        private static void colortext(string text)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(text);
             Console.ResetColor();
 
         }
-        public static async Task threeding()
-        {
-            string dot = "...";
-            Task dots = new Task(
-                () =>
-                {
-                    for (int i = 0; i < dot.Length; i++)
-                    {
-                        Thread.Sleep(500);
-                        Console.Write($"{dot[i]}");
-                    }
-                }
-            );
-            dots.Start();
-            await dots;
-        }
-        public static async Task space()
+        private static async Task space()
         {
             Task spaces = new Task(
                 () =>
@@ -46,10 +30,6 @@ namespace EF_C_
             );
             spaces.Start();
             await spaces;
-        }
-        public static void loading()
-        {
-            Console.Clear();
         }
 
         public static void Main(string[] args)
@@ -104,9 +84,7 @@ namespace EF_C_
                             Console.WriteLine("\t\t\t\t-    4.Search students with code number                    -");
                             Console.WriteLine("\t\t\t\t-                                                          -");
                             Console.WriteLine("\t\t\t\t-    5.Export data to excel                                -");
-                            Console.WriteLine("\t\t\t\t-                                                          -"); Console.WriteLine("\t\t\t\t-                                                          -");
-                            Console.WriteLine("\t\t\t\t-    6.Teacher manager                                     -");
-                            Console.WriteLine("\t\t\t\t-                                                          -");
+                            Console.WriteLine("\t\t\t\t-                                                          -");                           Console.WriteLine("\t\t\t\t-                                                          -");
                             Console.WriteLine("\t\t\t\t-    0.Back                                                -");
                             Console.WriteLine("\t\t\t\t-                                                          -");
                             Console.WriteLine("\t\t\t\t------------------------------------------------------------");
@@ -153,6 +131,12 @@ namespace EF_C_
                                         Console.Write("\t\t\t\tEnter number code students: ");
                                         ID = int.Parse(Console.ReadLine());
                                         students.SearchStudents(ID);
+                                        Console.ReadKey();
+                                        break;
+                                    case 5:
+                                        Console.Clear();
+                                        Task.WaitAll(sp);
+                                        Console.Write("\t\t\t\tApplication is updating: ");
                                         Console.ReadKey();
                                         break;
                                     default:
